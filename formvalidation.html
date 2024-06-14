@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formvalidation</title>
+    <link rel="stylesheet" href="formvalidation.css"/>
+    <script src="https://kit.fontawesome.com/5ba2efb169.js" crossorigin="anonymous"></script>
+    
+</head>
+<body>
+    <script>
+        function validateForm(){
+            var username=document.forms["myForm"]["username"].value;
+            var email=document.forms["myForm"]["email"].value;
+            var password=document.forms["myForm"]["password"].value;
+            var confirmPassword=document.forms["myForm"]["confirmPassword"].value;
+
+            var usernameRegex=/^[a-zA-Z0-9]{3,}$/;
+            var emailRegex=/^[a-z0-9]+@[a-z]+\.[a-z]{2,4}$/;
+            // react12@gmail.com
+            var passwordRegex=/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,10}$/;
+        
+            if(!usernameRegex.test(username)){
+                alert("Invaild username format,it must be minimum 3 leters");
+                return false;
+            }
+            if(!emailRegex.test(email)){
+                alert("Invalid email format ");
+                return false;
+            }
+            if(!passwordRegex.test(password)){
+                alert("Invalid password,minimum 6 characters");
+                return false;
+            }
+            if(password !== confirmPassword){
+                alert("Passwords doesnot match");
+                return false;
+            }
+            alert("Form Submitted Successfully !");
+            console.log(username);
+            console.log(email);
+            console.log(password);
+            console.log(confirmPassword);
+            return true;
+        }
+    </script>
+    <!-- form details -->
+     <center>
+     <form class="formy" name="myForm"onsubmit="return validateForm()">
+        <h1 class="head">FORM</h1>
+        <label><i class="fa-regular fa-user"></i>&nbsp;Enter Username</label><br/>
+        <input type="text" placeholder="Enter Username" name="username"/><br/>
+        <label><i class="fa-solid fa-envelope"></i>&nbsp;Enter EmailId</label><br/>
+        <input type="email" placeholder="Enter Email" name="email"/><br/>
+        <label><i class="fa-solid fa-lock"></i>&nbsp;Enter Password</label><br/>
+        <input type="password" placeholder="Enter Password" name="password"/><br/>
+        <label><i class="fa-solid fa-lock"></i>&nbsp;Enter ConfirmPassword</label><br/>
+        <input type="password" placeholder="Enter ConfirmPassword" name="confirmPassword"/><br/>
+        <button class=" btn btn-secondary sub"><b>SUBMIT</b></button>
+        </form>
+        </center>
+</body>
+</html>
